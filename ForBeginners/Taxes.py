@@ -16,5 +16,5 @@ else: # if value is bigger than 2000, then it enters here
         secondTax = 1500
         thirdTax = value - 4500
 
-    print("R$ " +
-          "{:.2f}".format(firstTax*0.08 + secondTax*0.18 + thirdTax*0.28))
+    print("R$ " + "{:.2f}".format(firstTax*0.08 + secondTax*0.18 + thirdTax*0.28))
+    
