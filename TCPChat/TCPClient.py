@@ -21,7 +21,7 @@ while True:
     s.send(byteMESSAGE)
     data = s.recv(BUFFER_SIZE)
 
-    print("Server:", data.decode())
+    print("Server response:", data.decode())
 
 s.close()
 

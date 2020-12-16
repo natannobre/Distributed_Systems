@@ -16,7 +16,7 @@ print ("Connection address:", addr)
 while 1:
     data = conn.recv(BUFFER_SIZE)
     if not data: break
-    print("Client:", data.decode())
+    print("Client Message:", data.decode())
     response = input()
     conn.send(str.encode(response))
 
