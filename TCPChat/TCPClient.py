@@ -1,27 +1,20 @@
-#AUTHOR: NATAN NOBRE CHAVES - COMPUTER ENGINEER
+# AUTHOR: NATAN NOBRE CHAVES - COMPUTER ENGINEER
 
-import socket
+from Model.SocketTCP import TCPClient
 
-TCP_IP = '127.0.0.1'
-TCP_PORT = 5005
-BUFFER_SIZE = 2048
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #STREAM = TCP / DATAGRAM = UDP
-s.connect((TCP_IP, TCP_PORT))
+clientTCP = TCPClient()
+clientTCP.createSocketTCP()
 
 while True:
     strMESSAGE = input()
 
-    #Way to finish the chat
-    if(strMESSAGE == "exit"):
+    # Way to finish the chat
+    if strMESSAGE == "exit":
         break
 
-    byteMESSAGE = str.encode(strMESSAGE)
+    clientTCP.sendMessageTCP(strMESSAGE)
 
-    s.send(byteMESSAGE)
-    data = s.recv(BUFFER_SIZE)
+    data = clientTCP.receiveMessageTCP()
+    print("Server response:", data)
 
-    print("Server response:", data.decode())
-
-s.close()
-
+clientTCP.closeSocketTCP()

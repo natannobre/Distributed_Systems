@@ -1,4 +1,4 @@
-#AUTHOR: NATAN NOBRE CHAVES - COMPUTER ENGINEER
+# AUTHOR: NATAN NOBRE CHAVES - COMPUTER ENGINEER
 
 # MODEL TO REQUEST: 10 + 2
 # NUM[SPACE]SYMBOL[SPACE]NUM
@@ -6,21 +6,15 @@
 # NUMBERS ALLOWED: ANY RATIONAL NUMBER
 # SYMBOLS ALLOWED: +,-,* AND /
 
-import socket
-
-TCP_IP = '127.0.0.1'
-TCP_PORT = 5005
-BUFFER_SIZE = 1024
+from Model.SocketTCP import TCPClient
 
 strMESSAGE = input()
-byteMESSAGE = str.encode(strMESSAGE)
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #STREAM = TCP / DATAGRAM = UDP
-s.connect((TCP_IP, TCP_PORT))
-s.send(byteMESSAGE)
-data = s.recv(BUFFER_SIZE)
-s.close()
+clientTCP = TCPClient()
+clientTCP.createSocketTCP()
 
-data = float(data.decode())
-data = '{0:g}'.format(data)
+clientTCP.sendMessageTCP(strMESSAGE)
+data = clientTCP.receiveMessageTCP()
+
+data = '{0:g}'.format(float(data))
 print("Result:", data)
